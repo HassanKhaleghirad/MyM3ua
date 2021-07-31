@@ -6,6 +6,7 @@ public class USSDMessage {
     private java.lang.String message;
     private com.example.hassan.model.ussd.UssdMessageMethod method;
     private int invokeId;
+    //org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary mapDialog;
     private final org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary mapDialog;
     private java.util.Date time;
     private com.example.hassan.model.ussd.UssdMessageSource source;

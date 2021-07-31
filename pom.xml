@@ -18,6 +18,7 @@
         <guava.version>18.0</guava.version>
         <dep.dir>${project.basedir}/src/deps</dep.dir>
         <sctp.version>2.0.0-166</sctp.version>
+        <sctp.version>2.0.0-166</sctp.version>
         <asn.version>2.2.0-143</asn.version>
         <stream.version>1.0.0.CR1</stream.version>
         <commons.version>1.0.0.CR1</commons.version>
@@ -25,8 +26,14 @@
         <javolution.version>5.5.1</javolution.version>
         <netty.version>4.0.56.Final</netty.version>
         <ss7.version>8.0.0-149</ss7.version>
+        <log4j.version>1.2.17</log4j.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.0-alpha2</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -157,11 +164,11 @@
             <artifactId>concurrent</artifactId>
             <version>${concurrent.version}</version>
         </dependency>
-        <!--<dependency>
+        <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>${log4j.version}</version>
-        </dependency>-->
+        </dependency>
         <dependency>
             <groupId>javolution</groupId>
             <artifactId>javolution</artifactId>
