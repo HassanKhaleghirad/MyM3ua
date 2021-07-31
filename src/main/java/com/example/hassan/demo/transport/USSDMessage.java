@@ -9,25 +9,20 @@ import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplem
 
 public class USSDMessage {
     private String msisdn;
-
     private String message;
-
     private UssdMessageMethod method;
-
     private int invokeId;
-
     private final MAPDialogSupplementary mapDialog;
-
     private Date time = new Date();
-
-    private UssdMessageSource source = UssdMessageSource.server;
+    private UssdMessageSource source;
 
     USSDMessage(MAPDialogSupplementary mapDialog) {
+        this.source = UssdMessageSource.server;
         this.mapDialog = mapDialog;
     }
 
-    public com.example.hassan.demo.transport.USSDMessage createReplay(String message, boolean end) {
-        com.example.hassan.demo.transport.USSDMessage replay = new com.example.hassan.demo.transport.USSDMessage(this.mapDialog);
+    public USSDMessage createReplay(String message, boolean end) {
+        USSDMessage replay = new USSDMessage(this.mapDialog);
         replay.setMessage(message);
         replay.setMsisdn(this.msisdn);
         replay.setInvokeId(this.invokeId);
@@ -90,8 +85,6 @@ public class USSDMessage {
     }
 
     public String toString() {
-        return "USSDMessage{msisdn='" + this.msisdn + '\'' + ", message='" + this.message + '\'' + ", method=" + this.method
-
-                .getMethodName() + '}';
+        return "USSDMessage{msisdn='" + this.msisdn + '\'' + ", message='" + this.message + '\'' + ", method=" + this.method.getMethodName() + '}';
     }
 }

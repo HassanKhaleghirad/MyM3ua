@@ -8,19 +8,12 @@ import org.springframework.stereotype.Component;
 @Component
 public class M3UALinkConfiguration implements Serializable {
     private String clientAddress;
-
     private String clientPort;
-
     private String serverPort;
-
     private String serverAddress;
-
     private int serviceSpc;
-
     private int clientSpc;
-
     private int ssn;
-
     private int networkIndicator;
 
     public M3UALinkConfiguration(@Value("${demo.ussd.client-address}") String clientAddress, @Value("${demo.ussd.client-port}") String clientPort, @Value("${demo.ussd.server-address}") String serverAddress, @Value("${demo.ussd.server-port}") String serverPort, @Value("${demo.ussd.server-spc}") int serviceSpc, @Value("${demo.ussd.client-spc}") int clientSpc, @Value("${demo.ussd.ssn}") int ssn, @Value("${demo.ussd.network-indicator}") int networkIndicator) {
@@ -82,4 +75,3 @@ public class M3UALinkConfiguration implements Serializable {
         return this.networkIndicator;
     }
 }
-

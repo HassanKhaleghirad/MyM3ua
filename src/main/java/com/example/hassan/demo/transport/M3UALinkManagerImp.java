@@ -8,20 +8,25 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 
 public class M3UALinkManagerImp implements M3UALinkManager {
-    private LinkedHashMap<Long, M3UALink> links = new LinkedHashMap<>();
+    private LinkedHashMap<Long, M3UALink> links = new LinkedHashMap();
+
+    public M3UALinkManagerImp() {
+    }
 
     public M3UALink getLink(M3UALinkConfiguration configuration) {
         long id = generateLinkId(configuration);
-        M3UALink link = getLink(id);
-        if (link != null)
+        M3UALink link = this.getLink(id);
+        if (link != null) {
             return link;
-        link = new M3UALink(id, configuration);
-        this.links.put(Long.valueOf(id), link);
-        return link;
+        } else {
+            link = new M3UALink(id, configuration);
+            this.links.put(id, link);
+            return link;
+        }
     }
 
     public M3UALink getLink(long linkId) {
-        return this.links.get(Long.valueOf(linkId));
+        return (M3UALink)this.links.get(linkId);
     }
 
     static long generateLinkId(M3UALinkConfiguration configuration) {
@@ -29,6 +34,6 @@ public class M3UALinkManagerImp implements M3UALinkManager {
     }
 
     static long generateId(String clientIp, String clientPort, String serverIp, String serverPort) {
-        return Objects.hash(new Object[] { clientIp, clientPort, serverIp, serverPort });
+        return (long)Objects.hash(new Object[]{clientIp, clientPort, serverIp, serverPort});
     }
 }

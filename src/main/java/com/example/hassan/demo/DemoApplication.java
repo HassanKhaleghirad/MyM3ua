@@ -19,23 +19,38 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class DemoApplication {
-    private static final Logger logger = LoggerFactory.getLogger(com.example.hassan.demo.DemoApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(DemoApplication.class);
+
+    public DemoApplication() {
+    }
 
     public static void main(String[] args) {
-        SpringApplication.run(com.example.hassan.demo.DemoApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
 
     @Bean
     public M3UALinkManager m3UALinkManager() {
-        return (M3UALinkManager)new M3UALinkManagerImp();
+        return new M3UALinkManagerImp();
     }
 
     @Bean
     public CommandLineRunner runner(M3UALinkManager m3UALinkManager, M3UALinkConfiguration configuration) {
-        return args -> {
+        return (args) -> {
             M3UALink link = m3UALinkManager.getLink(configuration);
-            link.setMessageReceptionInterceptor(());
-            link.setConnectionListener(());
+            link.setMessageReceptionInterceptor((m3UALink, message) -> {
+                logger.info("message received: {}", message.getMessage());
+                if ("1".equals(message.getMessage())) {
+                    m3UALink.reply(message.createReplay("2", false));
+                } else if ("3".equals(message.getMessage())) {
+                    m3UALink.reply(message.createReplay("4", true));
+                } else {
+                    m3UALink.reply(message.createReplay("1-سلام2-نعم", false));
+                }
+
+            });
+            link.setConnectionListener((m3UALink, info, status) -> {
+                logger.info(status.name() + " - " + info);
+            });
             link.connect();
         };
     }
