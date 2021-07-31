@@ -1,8 +1,12 @@
 package com.example.hassan.demo.transport;
 
 
-public interface M3UALinkManager {
-    com.example.hassan.demo.transport.M3UALink getLink(com.example.hassan.demo.transport.M3UALinkConfiguration configuration);
 
-    com.example.hassan.demo.transport.M3UALink getLink(long linkId);
+import com.example.hassan.demo.transport.M3UALink;
+import com.example.hassan.demo.transport.M3UALinkConfiguration;
+
+public interface M3UALinkManager {
+    M3UALink getLink(M3UALinkConfiguration paramM3UALinkConfiguration);
+
+    M3UALink getLink(long paramLong);
 }

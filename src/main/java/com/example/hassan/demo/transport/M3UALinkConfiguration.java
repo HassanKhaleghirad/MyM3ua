@@ -1,39 +1,85 @@
 package com.example.hassan.demo.transport;
 
-@org.springframework.stereotype.Component
-public class M3UALinkConfiguration implements java.io.Serializable {
-    private java.lang.String clientAddress;
-    private java.lang.String clientPort;
-    private java.lang.String serverPort;
-    private java.lang.String serverAddress;
+
+import java.io.Serializable;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+@Component
+public class M3UALinkConfiguration implements Serializable {
+    private String clientAddress;
+
+    private String clientPort;
+
+    private String serverPort;
+
+    private String serverAddress;
+
     private int serviceSpc;
+
     private int clientSpc;
+
     private int ssn;
+
     private int networkIndicator;
 
-    public M3UALinkConfiguration(@org.springframework.beans.factory.annotation.Value("${demo.ussd.client-address}") java.lang.String clientAddress, @org.springframework.beans.factory.annotation.Value("${demo.ussd.client-port}") java.lang.String clientPort, @org.springframework.beans.factory.annotation.Value("${demo.ussd.server-address}") java.lang.String serverAddress, @org.springframework.beans.factory.annotation.Value("${demo.ussd.server-port}") java.lang.String serverPort, @org.springframework.beans.factory.annotation.Value("${demo.ussd.server-spc}") int serviceSpc, @org.springframework.beans.factory.annotation.Value("${demo.ussd.client-spc}") int clientSpc, @org.springframework.beans.factory.annotation.Value("${demo.ussd.ssn}") int ssn, @org.springframework.beans.factory.annotation.Value("${demo.ussd.network-indicator}") int networkIndicator) { /* compiled code */ }
+    public M3UALinkConfiguration(@Value("${demo.ussd.client-address}") String clientAddress, @Value("${demo.ussd.client-port}") String clientPort, @Value("${demo.ussd.server-address}") String serverAddress, @Value("${demo.ussd.server-port}") String serverPort, @Value("${demo.ussd.server-spc}") int serviceSpc, @Value("${demo.ussd.client-spc}") int clientSpc, @Value("${demo.ussd.ssn}") int ssn, @Value("${demo.ussd.network-indicator}") int networkIndicator) {
+        this.clientAddress = clientAddress;
+        this.clientPort = clientPort;
+        this.serverPort = serverPort;
+        this.serverAddress = serverAddress;
+        this.serviceSpc = serviceSpc;
+        this.clientSpc = clientSpc;
+        this.ssn = ssn;
+        this.networkIndicator = networkIndicator;
+    }
 
-    public java.lang.String getClientAddress() { /* compiled code */ }
+    public String getClientAddress() {
+        return this.clientAddress;
+    }
 
-    public void setClientAddress(java.lang.String clientAddress) { /* compiled code */ }
+    public void setClientAddress(String clientAddress) {
+        this.clientAddress = clientAddress;
+    }
 
-    public java.lang.String getClientPort() { /* compiled code */ }
+    public String getClientPort() {
+        return this.clientPort;
+    }
 
-    public void setClientPort(java.lang.String clientPort) { /* compiled code */ }
+    public void setClientPort(String clientPort) {
+        this.clientPort = clientPort;
+    }
 
-    public java.lang.String getServerPort() { /* compiled code */ }
+    public String getServerPort() {
+        return this.serverPort;
+    }
 
-    public void setServerPort(java.lang.String serverPort) { /* compiled code */ }
+    public void setServerPort(String serverPort) {
+        this.serverPort = serverPort;
+    }
 
-    public java.lang.String getServerAddress() { /* compiled code */ }
+    public String getServerAddress() {
+        return this.serverAddress;
+    }
 
-    public void setServerAddress(java.lang.String serverAddress) { /* compiled code */ }
+    public void setServerAddress(String serverAddress) {
+        this.serverAddress = serverAddress;
+    }
 
-    public int getServiceSpc() { /* compiled code */ }
+    public int getServiceSpc() {
+        return this.serviceSpc;
+    }
 
-    public int getClientSpc() { /* compiled code */ }
+    public int getClientSpc() {
+        return this.clientSpc;
+    }
 
-    public int getSsn() { /* compiled code */ }
+    public int getSsn() {
+        return this.ssn;
+    }
 
-    public int getNetworkIndicator() { /* compiled code */ }
+    public int getNetworkIndicator() {
+        return this.networkIndicator;
+    }
 }
+

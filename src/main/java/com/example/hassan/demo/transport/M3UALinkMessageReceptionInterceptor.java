@@ -1,5 +1,9 @@
 package com.example.hassan.demo.transport;
 
+import com.example.hassan.demo.transport.M3UALink;
+import com.example.hassan.demo.transport.USSDMessage;
+
 public interface M3UALinkMessageReceptionInterceptor {
-    void onMessage(com.example.hassan.demo.transport.M3UALink client, com.example.hassan.demo.transport.USSDMessage message);
+    void onMessage(M3UALink paramM3UALink, USSDMessage paramUSSDMessage);
 }
+

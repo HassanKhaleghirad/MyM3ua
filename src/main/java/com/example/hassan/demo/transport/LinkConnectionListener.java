@@ -1,5 +1,9 @@
 package com.example.hassan.demo.transport;
 
+import com.example.hassan.demo.transport.M3UALink;
+import com.example.hassan.model.link.LinkConnectionStatus;
+
 public interface LinkConnectionListener {
-    void onStatusChange(com.example.hassan.demo.transport.M3UALink link, java.lang.String info, com.example.hassan.model.link.LinkConnectionStatus status);
+    void onStatusChange(M3UALink paramM3UALink, String paramString, LinkConnectionStatus paramLinkConnectionStatus);
 }
+

@@ -1,45 +1,97 @@
 package com.example.hassan.demo.transport;
 
 
+
+import com.example.hassan.model.ussd.UssdMessageMethod;
+import com.example.hassan.model.ussd.UssdMessageSource;
+import java.util.Date;
+import org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary;
+
 public class USSDMessage {
-    private java.lang.String msisdn;
-    private java.lang.String message;
-    private com.example.hassan.model.ussd.UssdMessageMethod method;
+    private String msisdn;
+
+    private String message;
+
+    private UssdMessageMethod method;
+
     private int invokeId;
-    //org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary mapDialog;
-    private final org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary mapDialog;
-    private java.util.Date time;
-    private com.example.hassan.model.ussd.UssdMessageSource source;
 
-    USSDMessage(org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary mapDialog) { /* compiled code */ }
+    private final MAPDialogSupplementary mapDialog;
 
-    public com.example.hassan.demo.transport.USSDMessage createReplay(java.lang.String message, boolean end) { /* compiled code */ }
+    private Date time = new Date();
 
-    public java.lang.String getMsisdn() { /* compiled code */ }
+    private UssdMessageSource source = UssdMessageSource.server;
 
-    void setMsisdn(java.lang.String msisdn) { /* compiled code */ }
+    USSDMessage(MAPDialogSupplementary mapDialog) {
+        this.mapDialog = mapDialog;
+    }
 
-    public java.lang.String getMessage() { /* compiled code */ }
+    public com.example.hassan.demo.transport.USSDMessage createReplay(String message, boolean end) {
+        com.example.hassan.demo.transport.USSDMessage replay = new com.example.hassan.demo.transport.USSDMessage(this.mapDialog);
+        replay.setMessage(message);
+        replay.setMsisdn(this.msisdn);
+        replay.setInvokeId(this.invokeId);
+        replay.setMethod(end ? UssdMessageMethod.end : UssdMessageMethod.continu);
+        replay.setSource(UssdMessageSource.client);
+        replay.setTime(new Date(System.currentTimeMillis()));
+        return replay;
+    }
 
-    public void setMessage(java.lang.String message) { /* compiled code */ }
+    public String getMsisdn() {
+        return this.msisdn;
+    }
 
-    public com.example.hassan.model.ussd.UssdMessageMethod getMethod() { /* compiled code */ }
+    void setMsisdn(String msisdn) {
+        this.msisdn = msisdn;
+    }
 
-    void setMethod(com.example.hassan.model.ussd.UssdMessageMethod method) { /* compiled code */ }
+    public String getMessage() {
+        return this.message;
+    }
 
-    public int getInvokeId() { /* compiled code */ }
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
-    void setInvokeId(int invokeId) { /* compiled code */ }
+    public UssdMessageMethod getMethod() {
+        return this.method;
+    }
 
-    org.restcomm.protocols.ss7.map.api.service.supplementary.MAPDialogSupplementary getMapDialog() { /* compiled code */ }
+    void setMethod(UssdMessageMethod method) {
+        this.method = method;
+    }
 
-    public com.example.hassan.model.ussd.UssdMessageSource getSource() { /* compiled code */ }
+    public int getInvokeId() {
+        return this.invokeId;
+    }
 
-    public void setSource(com.example.hassan.model.ussd.UssdMessageSource source) { /* compiled code */ }
+    void setInvokeId(int invokeId) {
+        this.invokeId = invokeId;
+    }
 
-    public java.util.Date getTime() { /* compiled code */ }
+    MAPDialogSupplementary getMapDialog() {
+        return this.mapDialog;
+    }
 
-    public void setTime(java.util.Date time) { /* compiled code */ }
+    public UssdMessageSource getSource() {
+        return this.source;
+    }
 
-    public java.lang.String toString() { /* compiled code */ }
+    public void setSource(UssdMessageSource source) {
+        this.source = source;
+    }
+
+    public Date getTime() {
+        return this.time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
+    }
+
+    public String toString() {
+        return "USSDMessage{msisdn='" + this.msisdn + '\'' + ", message='" + this.message + '\'' + ", method=" + this.method
+
+                .getMethodName() + '}';
+    }
 }

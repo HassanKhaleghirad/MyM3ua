@@ -1,15 +1,34 @@
 package com.example.hassan.demo.transport;
 
-public class M3UALinkManagerImp implements com.example.hassan.demo.transport.M3UALinkManager {
-    private java.util.LinkedHashMap<java.lang.Long,com.example.hassan.demo.transport.M3UALink> links;
 
-    public M3UALinkManagerImp() { /* compiled code */ }
+import com.example.hassan.demo.transport.M3UALink;
+import com.example.hassan.demo.transport.M3UALinkConfiguration;
+import com.example.hassan.demo.transport.M3UALinkManager;
+import java.util.LinkedHashMap;
+import java.util.Objects;
 
-    public com.example.hassan.demo.transport.M3UALink getLink(com.example.hassan.demo.transport.M3UALinkConfiguration configuration) { /* compiled code */ }
+public class M3UALinkManagerImp implements M3UALinkManager {
+    private LinkedHashMap<Long, M3UALink> links = new LinkedHashMap<>();
 
-    public com.example.hassan.demo.transport.M3UALink getLink(long linkId) { /* compiled code */ }
+    public M3UALink getLink(M3UALinkConfiguration configuration) {
+        long id = generateLinkId(configuration);
+        M3UALink link = getLink(id);
+        if (link != null)
+            return link;
+        link = new M3UALink(id, configuration);
+        this.links.put(Long.valueOf(id), link);
+        return link;
+    }
 
-    static long generateLinkId(com.example.hassan.demo.transport.M3UALinkConfiguration configuration) { /* compiled code */ }
+    public M3UALink getLink(long linkId) {
+        return this.links.get(Long.valueOf(linkId));
+    }
 
-    static long generateId(java.lang.String clientIp, java.lang.String clientPort, java.lang.String serverIp, java.lang.String serverPort) { /* compiled code */ }
+    static long generateLinkId(M3UALinkConfiguration configuration) {
+        return generateId(configuration.getClientAddress(), configuration.getClientPort(), configuration.getServerAddress(), configuration.getServerPort());
+    }
+
+    static long generateId(String clientIp, String clientPort, String serverIp, String serverPort) {
+        return Objects.hash(new Object[] { clientIp, clientPort, serverIp, serverPort });
+    }
 }
