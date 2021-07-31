@@ -24,6 +24,7 @@ public enum UssdMessageMethod {
         }
     }
 
+
     public static UssdMessageMethod fromMenuMakerCommand(String command){
         byte var2 = -1;
         switch (command.hashCode()){
